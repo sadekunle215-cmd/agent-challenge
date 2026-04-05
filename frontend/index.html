@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alpha Hunter — Crypto Intelligence Agent</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background: #000000;
+    color: #ffffff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: linear-gradient(135deg, #0a0a0a, #1a1a0a);
+    border-bottom: 1px solid #FFD700;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .header-text h1 {
+    font-size: 18px;
+    color: #FFD700;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .header-text p {
+    font-size: 11px;
+    color: #888;
+  }
+
+  .status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #00ff88;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .chat-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .welcome-msg {
+    text-align: center;
+    padding: 30px 20px;
+    color: #666;
+  }
+
+  .welcome-msg h2 {
+    color: #FFD700;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .welcome-msg p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .suggestion {
+    background: #111;
+    border: 1px solid #FFD700;
+    color: #FFD700;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .suggestion:hover {
+    background: #FFD700;
+    color: #000;
+  }
+
+  .message {
+    display: flex;
+    gap: 10px;
+    max-width: 80%;
+  }
+
+  .message.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .message.agent {
+    align-self: flex-start;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .agent .avatar {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+    font-weight: bold;
+  }
+
+  .user .avatar {
+    background: #222;
+    color: #FFD700;
+  }
+
+  .bubble {
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .agent .bubble {
+    background: #111;
+    border: 1px solid #222;
+    color: #fff;
+    border-radius: 4px 16px 16px 16px;
+  }
+
+  .user .bubble {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+    font-weight: 500;
+    border-radius: 16px 4px 16px 16px;
+  }
+
+  .thinking {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 4px 16px 16px 16px;
+  }
+
+  .thinking span {
+    width: 8px;
+    height: 8px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out;
+  }
+
+  .thinking span:nth-child(2) { animation-delay: 0.2s; }
+  .thinking span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bounce {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+
+  .input-area {
+    background: #0a0a0a;
+    border-top: 1px solid #FFD700;
+    padding: 16px 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  input {
+    flex: 1;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 24px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s;
+  }
+
+  input:focus {
+    border-color: #FFD700;
+  }
+
+  input::placeholder { color: #444; }
+
+  button {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border: none;
+    color: #000;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+  }
+
+  button:hover { transform: scale(1.05); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .powered {
+    text-align: center;
+    font-size: 10px;
+    color: #333;
+    padding: 4px;
+  }
+
+  .powered span { color: #FFD700; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">⚡</div>
+  <div class="header-text">
+    <h1>ALPHA HUNTER</h1>
+    <p>On-Chain Crypto Intelligence</p>
+  </div>
+  <div class="status">
+    <div class="status-dot"></div>
+    Live
+  </div>
+</header>
+
+<div class="chat-container" id="chat">
+  <div class="welcome-msg">
+    <h2>⚡ Alpha Hunter</h2>
+    <p>Your decentralized crypto intelligence agent.<br>Powered by Nosana GPU Network.</p>
+    <div class="suggestions">
+      <div class="suggestion" onclick="sendSuggestion(this)">What's trending in crypto today?</div>
+      <div class="suggestion" onclick="sendSuggestion(this)">How do I find airdrops early?</div>
+      <div class="suggestion" onclick="sendSuggestion(this)">Analyze Solana DeFi opportunities</div>
+      <div class="suggestion" onclick="sendSuggestion(this)">Track whale wallet movements</div>
+    </div>
+  </div>
+</div>
+
+<div class="input-area">
+  <input type="text" id="input" placeholder="Ask Alpha Hunter for crypto alpha..." onkeypress="if(event.key==='Enter')sendMessage()">
+  <button onclick="sendMessage()" id="sendBtn">➤</button>
+</div>
+<div class="powered">Powered by <span>Nosana</span> Decentralized GPU Network</div>
+
+<script>
+let agentId = null;
+
+async function getAgentId() {
+  try {
+    const res = await fetch('http://localhost:3000/api/agents');
+    const data = await res.json();
+    if (data.agents && data.agents.length > 0) {
+      agentId = data.agents[0].id;
+    }
+  } catch(e) {
+    console.log('Could not fetch agent ID');
+  }
+}
+
+function addMessage(text, role) {
+  const chat = document.getElementById('chat');
+  const msg = document.createElement('div');
+  msg.className = `message ${role}`;
+  const avatar = role === 'agent' ? '⚡' : '👤';
+  msg.innerHTML = `
+    <div class="avatar">${avatar}</div>
+    <div class="bubble">${text}</div>
+  `;
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function addThinking() {
+  const chat = document.getElementById('chat');
+  const msg = document.createElement('div');
+  msg.className = 'message agent';
+  msg.id = 'thinking';
+  msg.innerHTML = `
+    <div class="avatar">⚡</div>
+    <div class="thinking"><span></span><span></span><span></span></div>
+  `;
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function removeThinking() {
+  const t = document.getElementById('thinking');
+  if (t) t.remove();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  input.value = '';
+  document.getElementById('sendBtn').disabled = true;
+  addMessage(text, 'user');
+  addThinking();
+
+  try {
+    if (!agentId) await getAgentId();
+    
+    const res = await fetch(`http://localhost:3000/api/${agentId}/message`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, userId: 'user', userName: 'user' })
+    });
+
+    const data = await res.json();
+    removeThinking();
+
+    if (Array.isArray(data) && data.length > 0) {
+      addMessage(data[0].text, 'agent');
+    } else {
+      addMessage("I'm analyzing the markets. Try again in a moment.", 'agent');
+    }
+  } catch(e) {
+    removeThinking();
+    addMessage('Connection error. Please try again.', 'agent');
+  }
+
+  document.getElementById('sendBtn').disabled = false;
+}
+
+function sendSuggestion(el) {
+  document.getElementById('input').value = el.textContent;
+  sendMessage();
+}
+
+getAgentId();
+</script>
+</body>
+</html>
