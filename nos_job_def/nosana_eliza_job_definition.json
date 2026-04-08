@@ -3,12 +3,12 @@
     {
       "id": "agent",
       "args": {
-        "image": "yourusername/nosana-eliza-agent:latest",
+        "image": "sadekunle215/alpha-hunter:latest",
         "expose": 3000,
         "env": {
           "OPENAI_API_KEY": "nosana",
-          "OPENAI_API_URL": "TODO: replace with actual Nosana Qwen3.5 endpoint URL",
-          "MODEL_NAME": "qwen3.5-27b",
+          "OPENAI_API_URL": "https://37ZLubZWe5RemETmGPSxhaUt2qtMcoN89DhvNyVGhGzA.node.k8s.prd.nos.ci/v1",
+          "MODEL_NAME": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
           "SERVER_PORT": "3000",
           "NODE_ENV": "production"
         }
