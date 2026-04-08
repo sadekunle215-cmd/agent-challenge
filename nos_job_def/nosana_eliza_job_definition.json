@@ -3,7 +3,7 @@
     {
       "id": "agent",
       "args": {
-        "image": "sadekunle215/alpha-hunter:latest",
+        "image": "alphahunter215/alphahunter-agent:latest",
         "expose": 3000,
         "env": {
           "OPENAI_API_KEY": "nosana",
