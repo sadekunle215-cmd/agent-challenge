@@ -7,7 +7,7 @@
         "expose": 3000,
         "env": {
           "OPENAI_API_KEY": "nosana",
-          "OPENAI_API_URL": "https://37ZLubZWe5RemETmGPSxhaUt2qtMcoN89DhvNyVGhGzA.node.k8s.prd.nos.ci/v1",
+          "OPENAI_API_URL": "https://2Ep4n4wEI8hj75c15T9vdP2gyeRaJHX3DYCkgp94kUJo.node.k8s.prd.nos.ci/v1",
           "MODEL_NAME": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
           "SERVER_PORT": "3000",
           "NODE_ENV": "production"
