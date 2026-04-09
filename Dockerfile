@@ -3,7 +3,8 @@ RUN apt-get update && apt-get install -y python3 make g++ git && rm -rf /var/lib
 ENV ELIZAOS_TELEMETRY_DISABLED=true
 ENV DO_NOT_TRACK=1
 WORKDIR /app
-RUN npm install -g pnpm @elizaos/cli
+RUN npm install -g pnpm
+RUN npm install -g @elizaos/cli
 COPY package.json ./
 RUN pnpm install
 COPY . .
