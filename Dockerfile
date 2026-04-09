@@ -1,15 +1,20 @@
-FROM node:23-slim AS base
-RUN apt-get update && apt-get install -y python3 make g++ git && rm -rf /var/lib/apt/lists/*
-ENV ELIZAOS_TELEMETRY_DISABLED=true
-ENV DO_NOT_TRACK=1
+FROM oven/bun:1
+
 WORKDIR /app
-RUN npm install -g pnpm
-RUN npm install -g @elizaos/cli
-COPY package.json ./
-RUN pnpm install
+
+RUN apt-get update && apt-get install -y python3 build-essential git && rm -rf /var/lib/apt/lists/*
+
+COPY package.json bun.lock* ./
+
+RUN bun install
+
 COPY . .
+
 RUN mkdir -p /app/data
+
 EXPOSE 3000
+
 ENV NODE_ENV=production
 ENV SERVER_PORT=3000
-CMD ["elizaos", "start", "--character", "./characters/agent.character.json"]
+
+CMD ["bunx", "elizaos", "start", "--character", "./characters/agent.character.json"]
