@@ -196,16 +196,18 @@ agent-challenge/
 
 ## ✅ Submission Checklist
 
+- [x] Public GitHub Fork with agent code
+- [x] Live Nosana Deployment URL
+- [x] Project Description
+- [x] Video Demo (<1 minute)
+- [x] Social Media Post
+- [x] Stars on Nosana repos (agent-challenge, nosana-programs, nosana-kit, nosana-cli)
 - [x] Agent with Tool Calling
 - [x] ElizaOS Default Chat Interface
 - [x] ElizaOS v2 Character Definition
 - [x] Deployed on Nosana
 - [x] Docker Container on Docker Hub
-- [x] Video Demo
 - [x] Updated README
-- [x] Social Media Post
-
----
 
 ## 👤 Builder
 
