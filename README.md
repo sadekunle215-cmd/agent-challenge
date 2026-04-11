@@ -209,7 +209,7 @@ agent-challenge/
 
 ## 👤 Builder
 
-Built by **Saka** for the **Nosana x ElizaOS Builders Challenge #4**
+Built by **SAM** for the **Nosana x ElizaOS Builders Challenge #4**
 
 ---
 
