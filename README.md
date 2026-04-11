@@ -11,8 +11,8 @@ Alpha Hunter is an autonomous crypto intelligence agent that surfaces actionable
 
 - **Nosana Deployment:** `https://dashboard.nosana.com/jobs/<YOUR_JOB_ID>`
 - **Docker Hub Image:** `alphahunter215/alphahunter-agent:latest`
-- **Video Demo:** `<YOUR_VIDEO_LINK>`
-- **Social Post:** `<YOUR_X_POST_LINK>`
+- **Video Demo:** `<https://youtube.com/shorts/r0L50KxPApE?si=819hhy1NwbO3IMyp>`
+- **Social Post:** `<https://x.com/i/status/2042862095977402693>`
 
 ---
 
