@@ -140,7 +140,7 @@ Open http://localhost:3000 for the frontend.
 
 ```env
 OPENAI_API_KEY=nosana
-OPENAI_API_URL=https://<your-nosana-llm-endpoint>/v1
+OPENAI_API_URL=OPENAI_API_URL=https://<nosana-node-url>.node.k8s.prd.nos.ci/v1
 MODEL_NAME=deepseek-ai/DeepSeek-R1-Distill-Qwen-14B
 SERVER_PORT=3000
 NODE_ENV=production
