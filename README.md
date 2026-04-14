@@ -34,7 +34,7 @@ Alpha Hunter operates as a persistent crypto intelligence agent. Instead of pass
 |---|---|
 | Agent Framework | ElizaOS v2 |
 | LLM Backend | Qwen3.5 via Ollama (Nosana-hosted) |
-| Frontend | ElizaOS Default Chat Interface (port 3000) |
+| Frontend | Custom Chat Interface (black/gold theme, port 3000)|
 | Deployment | Nosana Decentralized GPU Network |
 | Runtime | Bun |
 | Container | Docker |
